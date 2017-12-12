@@ -1,51 +1,41 @@
 import React from 'react';
-import { OverPack } from 'rc-scroll-anim';
 import QueueAnim from 'rc-queue-anim';
-import { Button } from 'antd';
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
+import QRCode from 'qrcode.react';
+import { Row, Col } from 'antd';
+import { page2 } from './data';
 
-function Page2() {
-  return (
-    <div className="home-page page2">
-      <div className="home-page-wrapper">
-        <div className="title-line-wrapper page2-line">
-          <div className="title-line" />
+export default function Page2() {
+  const children = page2.map((d, i) => {
+    if (i > 2) {
+      return null;
+    }
+    return (
+      <Col key={i} className="col" span={8}>
+        <div className="content-wrapper home-hover">
+          <div className="image" style={{ backgroundImage: `url(${d.image})` }} />
+          <div className="code-wrapper">
+            <h4>扫码预览</h4>
+            <QRCode value={d.url} size={160} />
+          </div>
         </div>
-        <h2>Let’s <span>Pro</span></h2>
-        <OverPack>
-          <QueueAnim key="queue" type="bottom" leaveReverse className="page2-content">
-            <p key="p" className="page-content">
-              命令行运行下列命令，快速启动开发服务：
-            </p>
-            <div key="code1" className="home-code">
-              <div>
-                $ <span>git clone</span> git@github.com:ant-design/ant-design-pro.git --depth=1
-              </div>
-              <div>$ cd ant-design-pro</div>
-              <div>$ npm install</div>
-              <div>
-                $ npm start
-                <span className="home-code-comment">
-                  // 打开浏览器访问 http://localhost:8000
-                </span>
-              </div>
-            </div>
-            <p key="p2" className="page-content">
-              需要帮助？请先阅读
-              <a> 开发文档 </a>
-              和
-              <a> 常见问题 </a>， 如果未能解决，可以到 GitHub 上
-              <a href="https://github.com/ant-design/ant-design-pro/issues"> 进行提问 </a>。
-            </p>
-            <div key="button" style={{ marginTop: 88 }}>
-              <a href="http://github.com/ant-design/ant-design-pro" target="_blank" rel="noopener noreferrer">
-                <Button type="primary">下载 Pro</Button>
-              </a>
-            </div>
+      </Col>);
+  });
+  return (
+    <div className="home-layout-wrapper home-case-wrapper">
+      <OverPack className="home-layout" playScale={0.4}>
+        <QueueAnim className="home-case" type="bottom" key="home-case" ease="easeOutQuart" leaveReverse>
+          <h2 key="h2">精品案例扫一扫</h2>
+          <i key="i" className="line" />
+          <QueueAnim
+            key="content"
+            component={Row}
+            type="bottom"
+            componentProps={{ gutter: 171 }}
+          >
+            {children}
           </QueueAnim>
-        </OverPack>
-      </div>
-    </div>
-  );
+        </QueueAnim>
+      </OverPack>
+    </div>);
 }
-
-export default Page2;

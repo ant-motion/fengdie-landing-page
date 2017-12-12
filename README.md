@@ -1,14 +1,12 @@
-### ant desing pro
+### 凤蝶首页
 
-ant desing pro 里的 landing page. 
+凤蝶里的 landing page. 
 
 脚手架使用的是： [antd-init](https://github.com/ant-design/antd-init);
 
 ## preview
 
-https://pro.ant.design
-
-https://ant-motion.github.io/ant-design-pro-landing-page/
+https://ant-motion.github.io/fengdie-landing-page/
 
 
 ## install
